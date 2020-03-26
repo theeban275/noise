@@ -18,6 +18,10 @@ import java.io.IOException
 import io.reactivex.Single
 import okio.Okio
 import okio.Utf8
+import okio.buffer
+import okio.sink
+import okio.source
+import okio.utf8Size
 import java.util.*
 
 @Table(database = NoiseDatabase::class)
@@ -35,7 +39,7 @@ class IdentityAnnouncementMessage : UnknownMessage {
         if (MessageTypes[publicType] != IdentityAnnouncementMessage::class.java)
             throw ClassCastException()
 
-        val payloadSource = Okio.buffer(Okio.source(ByteArrayInputStream(payload.blob)))
+        val payloadSource = ByteArrayInputStream(payload.blob).source().buffer()
 
         val usernameLength = payloadSource.readByte()
         val username = payloadSource.readString(usernameLength.toLong(), UnknownMessage.PAYLOAD_CHARSET)
@@ -60,9 +64,9 @@ class IdentityAnnouncementMessage : UnknownMessage {
         @Throws(UnknownMessage.PayloadTooLargeException::class, IOException::class)
         fun createAndSignAsync(identity: RemoteIdentity, zeroBits: Byte): Single<UnknownMessage> {
             val payloadStream = ByteArrayOutputStream()
-            val payloadSink = Okio.buffer(Okio.sink(payloadStream))
+            val payloadSink = payloadStream.sink().buffer()
 
-            payloadSink.writeByte(Utf8.size(identity.username).toByte().toInt())
+            payloadSink.writeByte(identity.username.utf8Size().toByte().toInt())
             payloadSink.writeString(identity.username, UnknownMessage.Companion.PAYLOAD_CHARSET)
             payloadSink.writeInt(identity.deviceId)
             payloadSink.write(identity.identityKey.serialize(), 0 /*offset*/, IDENTITY_KEY_SIZE)

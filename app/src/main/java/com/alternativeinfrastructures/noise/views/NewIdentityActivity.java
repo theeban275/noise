@@ -1,9 +1,7 @@
 package com.alternativeinfrastructures.noise.views;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +12,7 @@ import com.alternativeinfrastructures.noise.R;
 import com.alternativeinfrastructures.noise.models.LocalIdentity;
 import com.alternativeinfrastructures.noise.util.TextValidator;
 
-public class NewIdentityActivity extends AppCompatActivity {
+public class NewIdentityActivity extends androidx.appcompat.app.AppCompatActivity {
     public static final String TAG = "NewIdentityActivity";
 
     @Override
@@ -22,7 +20,7 @@ public class NewIdentityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_identity);
         setTitle(R.string.create_identity_title);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         EditText usernameEdit = (EditText) findViewById(R.id.username);

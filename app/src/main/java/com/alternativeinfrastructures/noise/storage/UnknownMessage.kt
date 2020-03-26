@@ -30,6 +30,8 @@ import io.reactivex.schedulers.Schedulers
 import okio.BufferedSink
 import okio.BufferedSource
 import okio.Okio
+import okio.buffer
+import okio.sink
 
 @Table(database = NoiseDatabase::class)
 open class UnknownMessage : BaseRXModel {
@@ -131,7 +133,7 @@ open class UnknownMessage : BaseRXModel {
     fun writeToByteArray(): ByteArray {
         // TODO: Add a way to calculate what the actual expected size is instead of using this guess
         val byteStream = ByteArrayOutputStream(PAYLOAD_SIZE * 2)
-        val byteSink = Okio.buffer(Okio.sink(byteStream))
+        val byteSink = byteStream.sink().buffer()
         writeToSink(byteSink)
         byteSink.flush()
 

@@ -22,6 +22,9 @@ import io.reactivex.schedulers.Schedulers
 import okio.BufferedSink
 import okio.BufferedSource
 import okio.Okio
+import okio.buffer
+import okio.sink
+import okio.source
 
 object StreamSync {
     val TAG = "StreamSync"
@@ -34,8 +37,8 @@ object StreamSync {
 
         // TODO: Set timeouts
 
-        val source = Okio.buffer(Okio.source(inputStream))
-        val sink = Okio.buffer(Okio.sink(outputStream))
+        val source = inputStream.source().buffer()
+        val sink = outputStream.sink().buffer()
         val ioExecutors = Executors.newFixedThreadPool(2) // Separate threads for send and receive
 
         val handshakeFutures = handshakeAsync(source, sink, ioExecutors)

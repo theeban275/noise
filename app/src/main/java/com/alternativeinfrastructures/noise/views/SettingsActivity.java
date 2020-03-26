@@ -6,14 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.alternativeinfrastructures.noise.R;
 import com.alternativeinfrastructures.noise.sync.bluetooth.BluetoothSyncService;
 
-public class SettingsActivity extends AppCompatActivity
+public class SettingsActivity extends androidx.appcompat.app.AppCompatActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String TAG = "SettingsActivity";
     public static final String KEY_BLUETOOTH_MAC = "pref_key_bluetooth_mac";
@@ -23,7 +21,7 @@ public class SettingsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_settings);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(R.string.settings_title);
 

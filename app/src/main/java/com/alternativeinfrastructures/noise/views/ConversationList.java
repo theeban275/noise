@@ -2,10 +2,6 @@ package com.alternativeinfrastructures.noise.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,23 +12,23 @@ import com.alternativeinfrastructures.noise.models.LocalIdentity;
 import com.alternativeinfrastructures.noise.views.debug.RawMessageList;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
-public class ConversationList extends AppCompatActivity {
+public class ConversationList extends androidx.appcompat.app.AppCompatActivity {
     public static final String TAG = "ConversationList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         setTitle(R.string.conversation_view_title);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        com.google.android.material.floatingactionbutton.FloatingActionButton fab = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                com.google.android.material.snackbar.Snackbar.make(view, "Replace with your own action", com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

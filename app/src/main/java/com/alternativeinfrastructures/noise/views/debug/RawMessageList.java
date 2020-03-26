@@ -1,9 +1,6 @@
 package com.alternativeinfrastructures.noise.views.debug;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,7 +16,7 @@ import com.alternativeinfrastructures.noise.storage.UnknownMessage_Table;
 
 import java.util.UUID;
 
-public class RawMessageList extends AppCompatActivity {
+public class RawMessageList extends androidx.appcompat.app.AppCompatActivity {
     public static final String TAG = "RawMessageList";
 
     private static final byte TEST_ZERO_BITS = 10;
@@ -33,7 +30,7 @@ public class RawMessageList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_raw_message_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         setTitle(R.string.raw_message_view_title);
@@ -53,7 +50,7 @@ public class RawMessageList extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.content_raw_message_list_view);
         listView.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        com.google.android.material.floatingactionbutton.FloatingActionButton fab = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
